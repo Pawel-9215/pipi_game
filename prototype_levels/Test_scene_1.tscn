@@ -6,3 +6,7 @@
 position = Vector2( 10.1466, 11.6804 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+
+[node name="Player2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 68.8336, 12.5132 )
+Player_NO = 2
