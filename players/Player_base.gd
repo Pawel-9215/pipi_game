@@ -23,7 +23,7 @@ func calculate_input(Player_nr):
 	
 	if Player_nr > 2:
 		push_error("Invalid player numer.\n Only 2 players handled")
-		MainLoop.NOTIFICATION_WM_QUIT_REQUEST
+		print(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
 		get_tree().quit()
 		
 	var nrm_motion = Vector2.ZERO
@@ -58,5 +58,5 @@ func movement():
 		motion.x = move_toward(motion.x, 0.0, friction)
 		motion.y = move_toward(motion.y, 0.0, friction)
 	motion = move_and_slide(motion)
-	print(motion)
+	# print(motion)
 		
