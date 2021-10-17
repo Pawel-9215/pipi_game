@@ -78,6 +78,7 @@ p2_down={
 2d_physics/layer_4="Collectibles"
 2d_physics/layer_5="Destructables"
 2d_physics/layer_6="Piggybank"
+2d_physics/layer_7="AI_navigtion"
 
 [physics]
 
