@@ -4,7 +4,11 @@
 [ext_resource path="res://players/Player_base.gd" type="Script" id=2]
 [ext_resource path="res://players/modules/piggybank.tscn" type="PackedScene" id=3]
 
-[sub_resource type="SpriteFrames" id=1]
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 2.19002
+height = 4.60776
+
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -12,21 +16,18 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 2.19002
-height = 4.60776
-
 [node name="Player" type="KinematicBody2D"]
 collision_mask = 21
 script = ExtResource( 2 )
 
-[node name="animated_sprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.629961, 5.5909 )
+position = Vector2( -0.0166025, 0.00490475 )
 rotation = -1.57079
-shape = SubResource( 2 )
+shape = SubResource( 1 )
+
+[node name="animated_sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -0.481023, -5.65221 )
+frames = SubResource( 2 )
 
 [node name="piggybank" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0.595276, 3.07559 )
+position = Vector2( -0.018178, -2.57662 )

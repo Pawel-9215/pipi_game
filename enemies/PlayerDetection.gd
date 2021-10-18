@@ -23,7 +23,7 @@ func rotate_area():
 		rotation = atan2(velocity_norm.y, velocity_norm.x)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
-func _process(delta):
+func _physics_process(delta):
 	rotate_area()
 	player_detection()
 	
@@ -35,24 +35,21 @@ func _process(delta):
 		emit_signal("player_lost")
 
 func player_detection():
-	if player_in_fov:
-		if player_in_LOS():
-			player_detected = true
-		else:
-			player_detected = false
+	if player_in_fov and player_in_LOS():
+		player_detected = true
 	else:
 		player_detected = false
 
 func player_in_LOS():
 	var space = get_world_2d().direct_space_state
-	var LOS_obstacle = space.intersect_ray(pipi.global_position, 
+	var LOS_obstacle = space.intersect_ray(global_position, 
 											player.global_position, 
 											[self, pipi],
-											5)
+											5, true, false)
 											
 											
 	if not LOS_obstacle:
-		print("no obstacle")
+		print("no obstacle", LOS_obstacle)
 		return false
 	else:
 		print("obstacle: ", LOS_obstacle.collider)
@@ -69,6 +66,8 @@ func _on_PlayerDetection_body_entered(body):
 	if player_in_fov == false:
 		player_in_fov = true
 		player = body
+	else:
+		pass
 
 
 func _on_PlayerDetection_body_exited(body):
