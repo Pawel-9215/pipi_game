@@ -11,14 +11,37 @@ var friction = 20
 var current_speed = Vector2.ZERO
 export var Player_NO = 1
 
+enum {
+	MOVE,
+	PANIC,
+	SAVE
+}
+
+var state = MOVE
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 	print("Player %d Ready" % Player_NO)
 	
 func _physics_process(_delta):
-	movement()
-
+	match state:
+		MOVE:
+			movement()
+		PANIC:
+			panic()
+		SAVE:
+			pass
+			
+func set_state(set_state):
+	var states = {
+		"move": MOVE,
+		"panic": PANIC,
+		"save": SAVE
+	}
+	print("player", Player_NO, "state: ", set_state)
+	state = states[set_state]
+	
 func calculate_input(Player_nr):
 	
 	if Player_nr > 2:
@@ -47,6 +70,10 @@ func calculate_input(Player_nr):
 		nrm_motion.y = 0
 		
 	return nrm_motion.normalized()
+	
+func panic():
+	#set panic animation
+	pass
 	
 func movement():
 	

@@ -49,10 +49,11 @@ func player_in_LOS():
 											
 											
 	if not LOS_obstacle:
-		print("no obstacle", LOS_obstacle)
+		#print("no obstacle", LOS_obstacle)
 		return false
 	else:
-		print("obstacle: ", LOS_obstacle.collider)
+		pass
+		#print("obstacle: ", LOS_obstacle.collider)
 		
 	var distance_to_player = player.global_position.distance_to(pipi.global_position)
 	
@@ -62,7 +63,7 @@ func player_in_LOS():
 		return false
 
 func _on_PlayerDetection_body_entered(body):
-	print("player in FOV: ", body)
+	#print("player in FOV: ", body)
 	if player_in_fov == false:
 		player_in_fov = true
 		player = body

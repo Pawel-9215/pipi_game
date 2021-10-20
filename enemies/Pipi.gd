@@ -16,6 +16,8 @@ var patrol_direction = {
 	"stand-still": Vector2.ZERO
 }
 
+var detected_player = null
+
 var current_patrol_direction = patrol_direction["right"]
 
 var SPEED = 110
@@ -27,6 +29,7 @@ enum {
 	PURSUIT,
 	ATTACK,
 	NUMB,
+	CONFUSED
 }
 
 var state = PATROL
@@ -41,7 +44,8 @@ func set_state(set_state):
 		"patrol": PATROL,
 		"pursuit": PURSUIT,
 		"attack": ATTACK,
-		"numb": NUMB
+		"numb": NUMB,
+		"confused": CONFUSED
 	}
 	
 	state = states[set_state]
@@ -65,14 +69,25 @@ func _physics_process(_delta):
 			pass
 		NUMB:
 			pass
+		CONFUSED:
+			pass
 			
 func patrol_state():
 	update_movement(current_patrol_direction, 0.5)
 	velocity = move_and_slide(velocity)
 	
 func pursuit_state():
+	var player_direction = Vector2.ZERO
+	if detected_player != null:
+		
+		player_direction = detected_player.global_position - global_position
+	update_movement(player_direction, 0.8)
+	velocity = move_and_slide(velocity)
+
+func confused_state():
+	#set confused animation
 	pass
-	
+
 func patrol_direction_raffle():
 	#print("Pipi changing direction")
 	var direction_enum = {
@@ -104,21 +119,31 @@ func _on_PatrolTimer_timeout():
 
 
 func _on_Navigation_body_entered(body):
-	var new_direction = patrol_direction_raffle()
-	#print(new_direction)
-	current_patrol_direction = patrol_direction[new_direction]
-	$PatrolTimer.start()
-
-
-func _on_PlayerDetection_body_exited(body):
-	pass # Replace with function body.
+	if state == PATROL:
+		var new_direction = patrol_direction_raffle()
+		#print(new_direction)
+		current_patrol_direction = patrol_direction[new_direction]
+		$PatrolTimer.start()
+	elif state == PURSUIT and body == detected_player:
+		set_state("attack")
+		detected_player.set_state("panic")
+	else:
+		pass
 
 
 func _on_PlayerDetection_player_detected(player):
-	print("PLayer detected!", player)
+	print("Player detected!", player)
+	detected_player = player
 	set_state("pursuit")
 
 
 func _on_PlayerDetection_player_lost():
 	print("Player lost")
+	set_state("confused")
+	$ConfusionTimer.start()
 	
+
+
+func _on_ConfusionTimer_timeout():
+	print("Confusion wears out")
+	set_state("patrol")
