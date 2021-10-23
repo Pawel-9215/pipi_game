@@ -87,3 +87,10 @@ func movement():
 	motion = move_and_slide(motion)
 	# print(motion)
 		
+
+
+func _on_save_area_body_entered(body):
+	#check body state;
+	var pipi = body
+	
+	pass # Replace with function body.
