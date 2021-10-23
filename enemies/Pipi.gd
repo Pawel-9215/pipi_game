@@ -66,11 +66,11 @@ func _physics_process(_delta):
 		PURSUIT:
 			pursuit_state()
 		ATTACK:
-			pass
+			attack_state()
 		NUMB:
-			pass
+			numb_state()
 		CONFUSED:
-			pass
+			confused_state()
 			
 func patrol_state():
 	update_movement(current_patrol_direction, 0.5)
@@ -84,9 +84,18 @@ func pursuit_state():
 	update_movement(player_direction, 0.8)
 	velocity = move_and_slide(velocity)
 
+func attack_state():
+	#set attack animation
+	pass
+
 func confused_state():
 	#set confused animation
 	pass
+
+func numb_state():
+	#after succesful player save
+	pass
+	
 
 func patrol_direction_raffle():
 	#print("Pipi changing direction")
@@ -140,6 +149,7 @@ func _on_PlayerDetection_player_detected(player):
 func _on_PlayerDetection_player_lost():
 	print("Player lost")
 	set_state("confused")
+	detected_player = null
 	$ConfusionTimer.start()
 	
 
@@ -147,3 +157,9 @@ func _on_PlayerDetection_player_lost():
 func _on_ConfusionTimer_timeout():
 	print("Confusion wears out")
 	set_state("patrol")
+
+func player_saved():
+	detected_player.set_state("move")
+	set_state("numb")
+	detected_player = null
+	#start numb timer
