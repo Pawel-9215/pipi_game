@@ -92,5 +92,7 @@ func movement():
 func _on_save_area_body_entered(body):
 	#check body state;
 	var pipi = body
-	
-	pass # Replace with function body.
+	if pipi.get_state() == "attack" and pipi.detected_player != self:
+		pipi.player_saved()
+	else:
+		pass

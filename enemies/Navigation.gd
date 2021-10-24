@@ -40,7 +40,7 @@ func _process(delta):
 
 
 func _on_Navigation_body_entered(body):
-	print("Ouh! Pipi hit wall")
+	pass
 	
 func get_adjacent_walls():
 	var touched_walls = []

@@ -46,6 +46,10 @@ autostart = true
 [node name="ConfusionTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="NumbTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="Navigation" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 5
@@ -87,6 +91,7 @@ polygon = PoolVector2Array( -24, 0, -64, 84, 64, 84, 24, 0, 0, -32 )
 
 [connection signal="timeout" from="PatrolTimer" to="." method="_on_PatrolTimer_timeout"]
 [connection signal="timeout" from="ConfusionTimer" to="." method="_on_ConfusionTimer_timeout"]
+[connection signal="timeout" from="NumbTimer" to="." method="_on_NumbTimer_timeout"]
 [connection signal="body_entered" from="Navigation" to="." method="_on_Navigation_body_entered"]
 [connection signal="body_entered" from="Navigation" to="Navigation" method="_on_Navigation_body_entered"]
 [connection signal="body_entered" from="PlayerDetection" to="PlayerDetection" method="_on_PlayerDetection_body_entered"]

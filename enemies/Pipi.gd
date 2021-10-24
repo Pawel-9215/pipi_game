@@ -32,6 +32,7 @@ enum {
 	CONFUSED
 }
 
+
 var state = PATROL
 
 # Called when the node enters the scene tree for the first time.
@@ -47,9 +48,24 @@ func set_state(set_state):
 		"numb": NUMB,
 		"confused": CONFUSED
 	}
-	
 	state = states[set_state]
-	print("pipi state: ", set_state)
+	if state in [PATROL, PURSUIT, ATTACK]:
+		$PlayerDetection.detection_active = true
+	elif state in [NUMB, CONFUSED]:
+		$PlayerDetection.detection_active = false
+	else:
+		pass
+	print("pipi state: ", get_state())
+
+func get_state():
+	var states = {
+		PATROL: "patrol",
+		PURSUIT: "pursuit",
+		ATTACK: "attack",
+		NUMB: "numb",
+		CONFUSED: "confused"
+	}
+	return states[state]
 
 func update_movement(input_vector: Vector2, mod_speed):
 	input_vector = input_vector.clamped(1.0)
@@ -85,15 +101,12 @@ func pursuit_state():
 	velocity = move_and_slide(velocity)
 
 func attack_state():
-	#set attack animation
 	pass
 
 func confused_state():
-	#set confused animation
 	pass
 
 func numb_state():
-	#after succesful player save
 	pass
 	
 
@@ -119,12 +132,12 @@ func patrol_direction_raffle():
 	return new_direction
 
 func _on_PatrolTimer_timeout():
-	#change patrol direction
 
-	var new_direction = patrol_direction_raffle()
-	#print(new_direction)
-	current_patrol_direction = patrol_direction[new_direction]
-	$PatrolTimer.start()
+	if state == PATROL:
+		var new_direction = patrol_direction_raffle()
+		#print(new_direction)
+		current_patrol_direction = patrol_direction[new_direction]
+		$PatrolTimer.start()
 
 
 func _on_Navigation_body_entered(body):
@@ -155,11 +168,19 @@ func _on_PlayerDetection_player_lost():
 
 
 func _on_ConfusionTimer_timeout():
-	print("Confusion wears out")
-	set_state("patrol")
+	if state == CONFUSED:
+		print("Confusion wears out")
+		set_state("patrol")
 
 func player_saved():
-	detected_player.set_state("move")
-	set_state("numb")
-	detected_player = null
-	#start numb timer
+	if state == ATTACK:
+		detected_player.set_state("move")
+		detected_player = null
+		set_state("numb")
+		$NumbTimer.start()
+
+
+func _on_NumbTimer_timeout():
+	if state == NUMB:
+		print("pipi numbness wears off...")
+		set_state("patrol")

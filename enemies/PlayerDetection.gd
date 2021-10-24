@@ -9,6 +9,8 @@ var player_detected = false
 
 var detection_status = false
 
+var detection_active = true
+
 signal player_detected
 signal player_lost
 
@@ -23,16 +25,19 @@ func rotate_area():
 		rotation = atan2(velocity_norm.y, velocity_norm.x)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
-func _physics_process(delta):
-	rotate_area()
-	player_detection()
-	
-	if player_detected and (detection_status == false):
-		detection_status = true
-		emit_signal("player_detected", player)
-	if (player_detected == false) and (detection_status == true):
-		detection_status = false
-		emit_signal("player_lost")
+func _physics_process(_delta):
+	if detection_active:
+		rotate_area()
+		player_detection()
+		
+		if player_detected and (detection_status == false):
+			detection_status = true
+			emit_signal("player_detected", player)
+		if (player_detected == false) and (detection_status == true):
+			detection_status = false
+			emit_signal("player_lost")
+		else:
+			pass
 
 func player_detection():
 	if player_in_fov and player_in_LOS():
@@ -55,7 +60,7 @@ func player_in_LOS():
 		pass
 		#print("obstacle: ", LOS_obstacle.collider)
 		
-	var distance_to_player = player.global_position.distance_to(pipi.global_position)
+	# var distance_to_player = player.global_position.distance_to(pipi.global_position)
 	
 	if LOS_obstacle.collider == player: # and distance_to_player <= MAX_DETECTION_RANGE:
 		return true
