@@ -4,6 +4,8 @@ extends KinematicBody2D
 # Patrol, pursuit, attack, numb
 
 var velocity = Vector2()
+var recorded_velocity = Vector2()
+
 var patrol_direction = {
 	"right": Vector2(1.0, 0.0),
 	"left": Vector2(-1.0, 0.0),
@@ -41,6 +43,7 @@ func _ready():
 
 
 func set_state(set_state):
+	recorded_velocity = velocity
 	var states = {
 		"patrol": PATROL,
 		"pursuit": PURSUIT,
@@ -55,7 +58,11 @@ func set_state(set_state):
 		$PlayerDetection.detection_active = false
 	else:
 		pass
+		
+	$animations.set_state(set_state)
+		
 	print("pipi state: ", get_state())
+	print("patrol direction: ", current_patrol_direction)
 
 func get_state():
 	var states = {
@@ -73,7 +80,11 @@ func update_movement(input_vector: Vector2, mod_speed):
 		velocity += input_vector * ACCELERATION
 		velocity = velocity.clamped(SPEED*mod_speed*input_vector.length())
 	else:
-		velocity = lerp(SPEED*mod_speed*input_vector, Vector2.ZERO, FRICTION)
+		if velocity.length() > FRICTION:
+			velocity -= velocity.clamped(1.0)*FRICTION
+		else:
+			velocity = Vector2.ZERO
+
 
 func _physics_process(_delta):
 	match state:
@@ -101,13 +112,16 @@ func pursuit_state():
 	velocity = move_and_slide(velocity)
 
 func attack_state():
-	pass
+	update_movement(Vector2.ZERO, 0.9)
+	velocity = move_and_slide(velocity)
 
 func confused_state():
-	pass
+	update_movement(Vector2.ZERO, 0.9)
+	velocity = move_and_slide(velocity)
 
 func numb_state():
-	pass
+	update_movement(Vector2.ZERO, 0.9)
+	velocity = move_and_slide(velocity)
 	
 
 func patrol_direction_raffle():
@@ -129,6 +143,7 @@ func patrol_direction_raffle():
 	while new_direction in adjacent_walls:
 		new_direction = direction_enum[randi()%9+1]
 		
+	print("patrol direction: ", current_patrol_direction)
 	return new_direction
 
 func _on_PatrolTimer_timeout():
