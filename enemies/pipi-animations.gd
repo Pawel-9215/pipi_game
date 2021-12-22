@@ -19,7 +19,24 @@ func set_horizontal():
 			flip_h = false
 		else:
 			pass
-
+			
+func patrol_animation(): #and pursuit
+	
+	# var angle = tanh(pipi.velocity.y/pipi.velocity.x)
+	
+	var angle = rad2deg(get_angle_to(pipi.position + pipi.velocity))
+	# print("angle: ", angle)
+	
+	if pipi.velocity != Vector2.ZERO:
+		if angle < -40.0 and angle > -140.0:
+			set_animation("run_up")
+		elif angle > 40 and angle < 140:
+			set_animation("run_down")
+		else:
+			set_animation("run_right")
+		
+	
+	
 func set_state(state):
 	
 	current_state = state
@@ -39,3 +56,11 @@ func set_state(state):
 func _process(_delta):
 	
 	set_horizontal()
+	if current_state in ["patrol", "pursuit"]:
+		patrol_animation()
+	if current_state == "attack":
+		set_animation("attacking")
+	elif current_state == "numb":
+		set_animation("dizzy")
+	elif current_state == "confused":
+		set_animation("confused")
