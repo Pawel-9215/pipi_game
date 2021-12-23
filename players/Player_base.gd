@@ -9,7 +9,9 @@ var motion = Vector2.ZERO
 var acceleration = 10
 var friction = 20
 var current_speed = Vector2.ZERO
+var character_sprite
 export var Player_NO = 1
+
 
 enum {
 	MOVE,
@@ -19,10 +21,46 @@ enum {
 
 var state = MOVE
 
+func load_player_data():
+	var player_data = File.new()
+	if not player_data.file_exists("user://savedplayers"):
+		return # Error, no save data!
+	player_data.open("user://savedplayers", File.READ)
+	
+	var players = parse_json(player_data.get_line())
+	var player_1 = players["player_1_character"]
+	var player_2 = players["player_2_character"]
+	
+	print("players: ", player_1, player_2)
+	
+	player_data.close()
+	return players
+	
+func set_chosen_character():
+	var player_names = {
+		1:"player_1_character",
+		2:"player_2_character"
+	}
+	var this_player = player_names[Player_NO]
+	var player_data = load_player_data()
+	
+	if player_data[this_player] == "bear":
+		print("this player is ", player_data[this_player])
+		character_sprite = $animations/bear
+		$animations/bunny.visible = false
+	if player_data[this_player] == "bunny":
+		print("this player is ", player_data[this_player])
+		character_sprite = $animations/bunny
+		$animations/bear.visible = false
+	
+	
+	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 	print("Player %d Ready" % Player_NO)
+	set_chosen_character()
 	
 func _physics_process(_delta):
 	match state:
