@@ -16,12 +16,29 @@ func match_player_characters():
 	$player_2_sprite.set_animation(animations[player_characters[player_2_character]])
 	
 func change_characters():
-	if Input.is_action_pressed("p1_up") and not Input.is_action_pressed("p1_down"):
-		print("player 1 input")
+	if Input.is_action_just_pressed("p1_up"):
+		#print("player 1 input")
 		if player_1_character == 1:
-			player_1_character = 1
+			player_1_character = 0
 		elif player_1_character < 1:
 			player_1_character += 1
+	elif Input.is_action_just_pressed("p1_down"):
+		if player_1_character == 0:
+			player_1_character = 1
+		elif player_1_character > 0:
+			player_1_character -= 1
+			
+	if Input.is_action_just_pressed("p2_up"):
+		#print("player 1 input")
+		if player_2_character == 1:
+			player_2_character = 0
+		elif player_2_character < 1:
+			player_2_character += 1
+	elif Input.is_action_just_pressed("p2_down"):
+		if player_2_character == 0:
+			player_2_character = 1
+		elif player_2_character > 0:
+			player_2_character -= 1
 			
 	match_player_characters()
 
@@ -31,5 +48,5 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	change_characters()
