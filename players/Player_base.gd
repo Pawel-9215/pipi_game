@@ -48,10 +48,12 @@ func set_chosen_character():
 		print("this player is ", player_data[this_player])
 		character_sprite = $animations/bear
 		$animations/bunny.visible = false
+		$animations.chosen_character = $animations/bear
 	if player_data[this_player] == "bunny":
 		print("this player is ", player_data[this_player])
 		character_sprite = $animations/bunny
 		$animations/bear.visible = false
+		$animations.chosen_character = $animations/bunny
 	
 	
 	
@@ -61,6 +63,7 @@ func _ready():
 	pass # Replace with function body.
 	print("Player %d Ready" % Player_NO)
 	set_chosen_character()
+	set_state("move")
 	
 func _physics_process(_delta):
 	match state:
@@ -79,6 +82,7 @@ func set_state(set_state):
 	}
 	print("player", Player_NO, "state: ", set_state)
 	state = states[set_state]
+	$animations.player_state = set_state
 	
 func calculate_input(Player_nr):
 	
