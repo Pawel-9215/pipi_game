@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GFX/UI/star.png" type="Texture" id=1]
+[ext_resource path="res://GFX/UI/empty_plate.png" type="Texture" id=2]
+[ext_resource path="res://GUI/PixelFont.tscn" type="PackedScene" id=3]
+
+[node name="MarginContainer" type="MarginContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 384.0
+margin_bottom = 256.0
+texture = ExtResource( 2 )
+
+[node name="PixelFont" parent="TextureRect" instance=ExtResource( 3 )]
+modulate = Color( 0.964706, 0.92549, 0.792157, 1 )
+position = Vector2( 155.546, 45.4823 )
+text = "congratulations"
+
+[node name="PixelFont2" parent="TextureRect" instance=ExtResource( 3 )]
+position = Vector2( 137.907, 219.666 )
+text = "press space to continue"
+
+[node name="Sprite" type="Sprite" parent="TextureRect"]
+position = Vector2( 174.252, 38.8069 )
+texture = ExtResource( 1 )
+offset = Vector2( -20.1024, -9.46195 )
+
+[node name="Sprite2" type="Sprite" parent="TextureRect"]
+position = Vector2( 210.11, 38.8069 )
+texture = ExtResource( 1 )
+offset = Vector2( -20.1024, -9.46195 )
+
+[node name="Sprite3" type="Sprite" parent="TextureRect"]
+position = Vector2( 247.083, 38.8069 )
+texture = ExtResource( 1 )
+offset = Vector2( -20.1024, -9.46195 )

@@ -70,7 +70,8 @@ func change_characters():
 func start_game():
 	if Input.is_action_just_pressed("ui_accept"):
 		save_player_data()
-		load_player_data()
+		#load_player_data()
+		get_tree().change_scene("res://prototype_levels/Test_scene_1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

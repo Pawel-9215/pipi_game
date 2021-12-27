@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://GUI/PixelFont.gd" type="Script" id=1]
+[ext_resource path="res://GFX/UI/font.png" type="Texture" id=2]
+
+[node name="PixelFont" type="Node2D"]
+position = Vector2( 197.084, 206.51 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+text = "Typehere"
+
+[node name="letter" type="Sprite" parent="."]
+use_parent_material = true
+texture = ExtResource( 2 )
+hframes = 26

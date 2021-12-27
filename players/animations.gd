@@ -38,7 +38,7 @@ func match_animation():
 	match player_state:
 		"move":
 			move_animations()
-			print("moving")
+			#print("moving")
 		"panic":
 			chosen_character.set_animation("Attack")
 
