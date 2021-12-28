@@ -269,14 +269,13 @@ script = ExtResource( 5 )
 position = Vector2( -0.483013, -5.6466 )
 frames = SubResource( 25 )
 animation = "Attack"
-frame = 1
+frame = 2
 playing = true
 
 [node name="bunny" type="AnimatedSprite" parent="animations"]
 position = Vector2( -0.468224, -5.66547 )
 frames = SubResource( 49 )
 animation = "Attack"
-frame = 3
 playing = true
 
 [node name="piggybank" parent="." instance=ExtResource( 3 )]
