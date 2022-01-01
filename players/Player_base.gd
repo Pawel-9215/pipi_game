@@ -83,6 +83,8 @@ func set_state(set_state):
 	print("player", Player_NO, "state: ", set_state)
 	state = states[set_state]
 	$animations.player_state = set_state
+	if set_state == "panic":
+		get_tree().call_group("GUI", "player_is_attacked", true)
 	
 func calculate_input(Player_nr):
 	
@@ -136,5 +138,6 @@ func _on_save_area_body_entered(body):
 	var pipi = body
 	if pipi.get_state() == "attack" and pipi.detected_player != self:
 		pipi.player_saved()
+		get_tree().call_group("GUI", "player_is_attacked", false)
 	else:
 		pass

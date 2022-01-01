@@ -534,6 +534,4 @@ position = Vector2( 263.428, 214.225 )
 [node name="collectible10" parent="YSort" instance=ExtResource( 3 )]
 position = Vector2( 135.533, 38.6647 )
 
-[node name="GUI" parent="." groups=[
-"GUI",
-] instance=ExtResource( 4 )]
+[node name="GUI" parent="." groups=["GUI"] instance=ExtResource( 4 )]

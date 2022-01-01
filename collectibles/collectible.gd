@@ -7,6 +7,7 @@ var value = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().call_group("GUI", "count_total_eggs")
 	pass # Replace with function body.
 
 
