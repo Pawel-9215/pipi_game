@@ -25,6 +25,26 @@ func _ready():
 		full_text[index].frame = alphabet[text[index]]
 		
 	$letter.visible = false
+	
+func clear_text():
+	for letter in full_text:
+		remove_child(letter)
+		letter.queue_free()
+
+func set_new_text(new_text):
+	clear_text()
+	full_text = []
+	var local_text = new_text.to_lower()
+	
+	for letter in local_text:
+		full_text.append($letter.duplicate())
+		
+	for index in full_text.size():
+		add_child(full_text[index])
+		full_text[index].global_position.x += 5*index
+		full_text[index].frame = alphabet[text[index]]
+		
+	$letter.visible = false
 		
 		
 		

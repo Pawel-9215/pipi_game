@@ -35,30 +35,6 @@ animations = [ {
 "speed": 8.0
 } ]
 
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 3 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 3 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 3 )
-region = Rect2( 48, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 3 )
-region = Rect2( 64, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 3 )
-region = Rect2( 80, 0, 16, 16 )
-
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 0, 16, 16 )
@@ -83,16 +59,40 @@ region = Rect2( 64, 0, 16, 16 )
 atlas = ExtResource( 4 )
 region = Rect2( 80, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 80, 0, 16, 16 )
+
 [sub_resource type="SpriteFrames" id=19]
 animations = [ {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
-"loop": true,
-"name": "bunny_idle",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "bear_idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "bunny_idle",
 "speed": 5.0
 } ]
 
@@ -121,7 +121,7 @@ playing = true
 position = Vector2( 14.1843, 121.439 )
 frames = SubResource( 19 )
 animation = "bunny_idle"
-frame = 5
+frame = 2
 playing = true
 offset = Vector2( 68.4385, 0 )
 
@@ -129,7 +129,7 @@ offset = Vector2( 68.4385, 0 )
 position = Vector2( 233.246, 121.5 )
 frames = SubResource( 19 )
 animation = "bear_idle"
-frame = 2
+frame = 5
 playing = true
 offset = Vector2( 68.4385, 0 )
 
