@@ -9,9 +9,9 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-text = "Typehere"
 
 [node name="letter" type="Sprite" parent="."]
+visible = false
 use_parent_material = true
 texture = ExtResource( 2 )
 hframes = 26

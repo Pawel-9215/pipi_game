@@ -23,6 +23,7 @@ func _ready():
 		add_child(full_text[index])
 		full_text[index].global_position.x += 5*index
 		full_text[index].frame = alphabet[text[index]]
+		full_text[index].visible = true
 		
 	$letter.visible = false
 	
@@ -42,7 +43,8 @@ func set_new_text(new_text):
 	for index in full_text.size():
 		add_child(full_text[index])
 		full_text[index].global_position.x += 5*index
-		full_text[index].frame = alphabet[text[index]]
+		full_text[index].frame = alphabet[local_text[index]]
+		full_text[index].visible = true
 		
 	$letter.visible = false
 		

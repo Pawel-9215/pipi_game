@@ -45,10 +45,10 @@ func update_score(player, value):
 		score = str(value)
 		
 	if player == 1:
-		match_score["player_1"] = score
+		match_score["player_1"] = value
 		$Control/HBoxContainer/P1_score.text = score
 	elif player == 2:
-		match_score["player_2"] = score
+		match_score["player_2"] = value
 		$Control/HBoxContainer/P2_score.text = score
 	else:
 		print("wrong player no")
@@ -61,7 +61,7 @@ func update_score(player, value):
 func end_match():
 	print("Game ended")
 	save_scoreboard_data()
-	pass
+	get_tree().change_scene("res://GUI/endgame.tscn")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

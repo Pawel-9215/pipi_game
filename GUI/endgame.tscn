@@ -152,5 +152,5 @@ offset = Vector2( -20.1024, -9.46195 )
 position = Vector2( 191, 71 )
 frames = SubResource( 21 )
 animation = "pipi"
-frame = 6
+frame = 3
 playing = true
