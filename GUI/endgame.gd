@@ -34,9 +34,10 @@ func load_scoreboard():
 			
 func set_frontend():
 	
-	$TextureRect/WinnerTag.set_new_text(who_won+ " won the game")
+	$TextureRect/WinnerTag.set_new_text(who_won+ " won")
 	if who_won == "Pipi":
 		$TextureRect/WinnerSprite.set_animation("pipi")
+		$TextureRect/WinnerTag.global_position.x += 16
 	elif who_won == "Player One":
 		$TextureRect/WinnerSprite.set_animation(player_1_avatar)
 	elif who_won == "Player Two":
@@ -59,7 +60,7 @@ func load_player_data():
 func _ready():
 	load_player_data()
 	load_scoreboard()
-	print(who_won, " WON")
+	print(who_won, " WON the game")
 	set_frontend()
 
 
