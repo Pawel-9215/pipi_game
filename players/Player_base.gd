@@ -85,6 +85,14 @@ func set_state(set_state):
 	$animations.player_state = set_state
 	if set_state == "panic":
 		get_tree().call_group("GUI", "player_is_attacked", true)
+		
+func get_state():
+	var states = {
+		MOVE: "move",
+		PANIC: "panic",
+		SAVE: "save"
+	}
+	return states[state]
 	
 func calculate_input(Player_nr):
 	
