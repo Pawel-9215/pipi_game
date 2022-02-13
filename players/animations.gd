@@ -23,6 +23,8 @@ func move_animations():
 		chosen_character.set_animation("Run_ru")
 	elif player.motion.y > 0:
 		chosen_character.set_animation("Run_rd")
+	elif player.motion.x != 0 and player.motion.y == 0:
+		chosen_character.set_animation("Run_rd")
 	elif player.motion == Vector2.ZERO:
 		chosen_character.set_animation("Idle")
 		
