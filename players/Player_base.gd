@@ -147,5 +147,7 @@ func _on_save_area_body_entered(body):
 	if pipi.get_state() == "attack" and pipi.detected_player != self:
 		pipi.player_saved()
 		get_tree().call_group("GUI", "player_is_attacked", false)
+		$Sounds/save.play()
+		$Sounds/save2.play()
 	else:
 		pass

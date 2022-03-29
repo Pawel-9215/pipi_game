@@ -75,6 +75,7 @@ func start_game():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$jeden_dwa.play()
 	match_player_characters()
 	save_player_data()
 

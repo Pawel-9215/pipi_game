@@ -14,7 +14,7 @@ dest_files=[ "res://.import/flat_02.png-4d77d1f529e5dc37921d3f383ecb55a6.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
