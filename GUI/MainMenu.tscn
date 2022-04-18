@@ -123,7 +123,7 @@ playing = true
 position = Vector2( 14.1843, 121.439 )
 frames = SubResource( 19 )
 animation = "bunny_idle"
-frame = 3
+frame = 4
 playing = true
 offset = Vector2( 68.4385, 0 )
 
@@ -131,6 +131,7 @@ offset = Vector2( 68.4385, 0 )
 position = Vector2( 233.246, 121.5 )
 frames = SubResource( 19 )
 animation = "bear_idle"
+frame = 1
 playing = true
 offset = Vector2( 68.4385, 0 )
 
@@ -143,6 +144,11 @@ text = "code  pawel hordyniak"
 modulate = Color( 0.101961, 0.109804, 0.176471, 1 )
 position = Vector2( 145.047, 250.45 )
 text = "art  pawel hordyniak"
+
+[node name="PixelFont3" parent="." instance=ExtResource( 6 )]
+modulate = Color( 0.101961, 0.109804, 0.176471, 1 )
+position = Vector2( 273.878, 250.45 )
+text = "uoice zofia hordyniak"
 
 [node name="MusicMenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
